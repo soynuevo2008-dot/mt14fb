@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>14 de Febrero – Para Ti</title>
+  <style>
+    :root{
+      --bg:#0f0f0f;
+      --panel:#141414;
+      --muted:#b0b0b0;
+      --text:#e8e8e8;
+      --accent:#ff6fa1;
+      --glass:rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:32px;
+      font-family:"Inter","Segoe UI",system-ui,-apple-system,"Segoe UI Emoji",monospace;
+      background:linear-gradient(180deg, var(--bg), #DA5CFA);
+      color:var(--text);
+      transition: background 1.9s ease; /* transición suave */
+    }
+    header{text-align:center;margin-bottom:22px;}
+    h1{margin:0;font-size:1.8rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);}
+    h2{margin:8px 0 0;font-weight:400;color:var(--muted);font-size:1rem;}
+    main{max-width:720px;margin:18px auto 0;display:grid;gap:18px;grid-template-columns:1fr;align-items:start;}
+    .card{background:linear-gradient(180deg,var(--panel),var(--glass));border:1px solid rgba(255,255,255,0.03);padding:22px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.6);text-align:center;}
+    .avatar{width:180px;height:180px;border-radius:12px;margin:0 auto 18px;border:2px solid rgba(255,255,255,0.08);background:transparent;overflow:hidden;position:relative;}
+    .avatar img{width:100%;height:100%;object-fit:cover;border-radius:12px;filter:drop-shadow(0 0 20px rgba(255,110,160,0.45));}
+    .message{font-size:1.1rem;color:var(--text);margin-top:12px;line-height:1.6;}
+    .highlight{color:var(--accent);font-weight:bold;}
+    #envelope{margin-top:20px;cursor:pointer;display:inline-block;padding:20px;background:var(--accent);color:#fff;border-radius:8px;font-weight:bold;box-shadow:0 4px 12px rgba(0,0,0,0.4);transition:transform 0.2s ease;}
+    #envelope:hover{transform:scale(1.05);}
+    #secret-message{display:none;margin-top:20px;font-size:1.1rem;line-height:1.6;color:var(--text);}
+    footer.card{margin-top:22px;color:var(--muted);font-size:0.9rem;}
+    .credit{margin-top:10px;background:transparent;border-top:1px dashed rgba(255,255,255,0.03);padding-top:10px;color:var(--muted);font-size:0.9rem;}
+    /* corazones flotantes */
+    .heart{
+      position:fixed;
+      width:20px;
+      height:20px;
+      background:var(--accent);
+      transform:rotate(45deg);
+      animation:float 6s infinite;
+    }
+    .heart::before,.heart::after{
+      content:"";
+      position:absolute;
+      width:20px;
+      height:20px;
+      background:var(--accent);
+      border-radius:50%;
+    }
+    .heart::before{top:-10px;left:0;}
+    .heart::after{left:10px;top:0;}
+
+    /* versión roja pasión */
+    .heart.red{
+      background:#c00000;
+    }
+    .heart.red::before,
+    .heart.red::after{
+      background:#c00000;
+    }
+
+    @keyframes float{
+      0%{transform:translateY(0) rotate(45deg);opacity:1;}
+      100%{transform:translateY(-200px) rotate(45deg);opacity:0;}
+    }
+    /* Responsive */
+    @media (max-width:600px){
+      body{margin:16px;}
+      .avatar{width:120px;height:120px;}
+      #envelope{padding:14px;font-size:0.95rem;}
+      .message,#secret-message{font-size:1rem;line-height:1.4;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>14 de Febrero</h1>
+    <h2>Un detalle que pensé para ti</h2>
+  </header>
+
+  <main>
+    <section class="card">
+      <div class="avatar">
+        <img src="gatico.jpg" alt="">
+      </div>
+      <div id="envelope">💌 Haz clic aquí</div>
+      <div id="secret-message">
+        <span class="highlight">Este mensaje lo hice para ti…</span><br><br>
+    <br><br> Querida Martha,
+
+La verdad es que no tengo muchas palabras para decirte, porque no soy alguien particularmente sentimental. Solo quiero expresarte que gracias por ser mi mejor amiga.
+
+Aunque aún no me hayas visto en persona, sé que pronto lo harás. Nunca pierdas la fe: cuando menos lo esperes, estaré frente a ti. La vida funciona así, de formas inesperadas.
+
+Me gustaría regresar pronto a la iglesia, pero todavía no es mi momento. Tengo que pasar por algunas cosas que me retrasan. Te recuerdo: feliz Día del Amor y la Amistad.
+
+No sé qué me regalarás, pero espero que sea algún recuerdo que pueda cuidar con mi vida, porque las cosas así las protejo con el alma.
+
+Quiero verte feliz, porque eres mi amiga. Si algún día tengo que hacer algo para que lo estés, lo haré sin dudar. Pronto te compraré algo; no sé qué será todavía. Pensaré en un vestido o algo bonito si encuentro lo adecuado. En fin, son las tres de la mañana y estuve días preparando este regalo, porque me gusta que quede perfecto y original.
+
+Te quiere,  
+Angel Ortega. </div>
+    </section>
+
+    <footer class="card">
+      <div class="credit">
+        Información del autor:
+        <div><strong></strong> ANGEL DAVID ORTEGA AMARO</div>
+        <div><strong>Correo:</strong> soynuevo2008@gmail.com</div>
+        <div><strong>Especialidad:</strong> PROGRAMACION.</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+  const envelope = document.getElementById("envelope");
+  const secretMessage = document.getElementById("secret-message");
+  const avatarImg = document.querySelector(".avatar img"); // selecciona la imagen
+
+  // Corazones iniciales (12, color por defecto)
+  for(let i=0; i<12; i++){
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.style.left = Math.random()*100 + "%";
+    heart.style.animationDelay = (Math.random()*5) + "s";
+    document.body.appendChild(heart);
+  }
+
+  envelope.addEventListener("click", () => {
+    secretMessage.style.display = "block";
+    document.body.style.background = "linear-gradient(180deg, #e11d48, #D422CE, #e11d47)";
+
+    // Cambiar la imagen al hacer clic
+    avatarImg.src = "kittymisc.jpg"; // pon aquí el nombre de la nueva imagen
+
+    // Corazones extra al hacer clic (38, rojos pasión)
+    for(let i=0; i<38; i++){
+      const heart = document.createElement("div");
+      heart.className = "heart red";
+      heart.style.left = Math.random()*100 + "%";
+      heart.style.animationDelay = (Math.random()*5) + "s";
+      document.body.appendChild(heart);
+    }
+  });
+</script>
+
+
+<audio autoplay loop>
+  <source src="0sentimientos.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio HTML5.
+</audio>
+
+
+</body>
+</html>
